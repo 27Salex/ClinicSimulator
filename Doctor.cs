@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace ClinicSimulator
 {
@@ -6,11 +8,16 @@ namespace ClinicSimulator
     {
         private int doctorID;
         private string job;
-
+        
         public Doctor(int id)
         {
-            this.doctorID = id;
+            doctorID = id;
             job = GenerateJob();
+        }
+        public Doctor(int id,  string job, string dni, string name, int age, string sex, string phone) : base(dni, name, age, sex, phone)
+        {
+            doctorID = id;
+            this.job = job; 
         }
 
         private string GenerateJob()
