@@ -16,7 +16,7 @@ namespace ClinicSimulator
             dni = rand.Next(1000000, 99999999).ToString() + "A";
             name = GenerateName();
             age = rand.Next(25, 65);
-            sex = GenerateSex();
+            sex = GenerateSex(); 
             phone = GeneratePhone();
         }
         public Person(string dni, string name, int age, string sex, string phone)
