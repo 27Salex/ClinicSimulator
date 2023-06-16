@@ -52,5 +52,9 @@ namespace ClinicSimulator
             return "+34 " + rand.Next(111111111, 999999999);
 
         }
+        public override string ToString()
+        {
+            return "Nombre: " + name + " ║ " + "DNI: " + dni + " ║ " + "Edad: " + age + " ║ " + "Sexo: " + sex + " ║ " + "Tlf: " + phone + " ║ ";
+        }
     }
 }
