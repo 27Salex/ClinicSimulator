@@ -8,13 +8,14 @@ namespace ClinicSimulator
     {
         private int doctorID;
         private string job;
-        
+        public int DoctorID { get { return doctorID; } }
+
         public Doctor(int id)
         {
             doctorID = id;
             job = GenerateJob();
         }
-        public Doctor(int id,  string job, string dni, string name, int age, string sex, string phone) : base(dni, name, age, sex, phone)
+        public Doctor(int id,  string name, string dni, string job, int age, string sex, string phone) : base(dni, name, age, sex, phone)
         {
             doctorID = id;
             this.job = job; 
@@ -22,11 +23,15 @@ namespace ClinicSimulator
 
         private string GenerateJob()
         {
-            string[] jobList = { "Neurólogo", "Cardiólogo", "Oncólogo", "Dermatólogo", "Psiquiatra",
-                "Ginecólogo", "Traumatólogo", "Endocrinólogo", "Pediatra", "Radiólogo", "Oftalmólogo",
-                "Urólogo", "Otorrinolaringólogo", "Gastroenterólogo", "Nefrólogo" };
-            Random rand = new Random();
-            return jobList[rand.Next(0, jobList.Length - 1)];
+            string[] jobList = { "Neurologo", "Cardiologo", "Oncologo", "Dermatologo", "Psiquiatra",
+                "Ginecologo", "Traumatologo", "Endocrinologo", "Pediatra", "Radiologo", "Oftalmologo",
+                "Urologo", "Otorrinolaringologo", "Gastroenterologo", "Nefrologo" };
+            return jobList[base.Rand.Next(0, jobList.Length)];
+        }
+        public override string ToString()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            return base.ToString() + "Colegiado: " + doctorID + " ║ " + "Especialidad: " + job; 
         }
     }
 }

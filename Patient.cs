@@ -11,7 +11,7 @@ namespace ClinicSimulator
         private int patientid;
         private string sickness;
         private int doctorID;
-
+        public int DoctorID { get { return doctorID; } }
         public Patient(int id, int maxSize)
         {
             patientid = id;
@@ -21,7 +21,7 @@ namespace ClinicSimulator
 
         
 
-        public Patient(int id, string sickness, int idMedicoAssingado, string dni, string name, int age, string sex, string phone) : base(dni, name, age, sex, phone)
+        public Patient(int id, string name, string sickness, string dni, int age, string sex, string phone, int idMedicoAssingado) : base(dni, name, age, sex, phone)
         {
             patientid = id;
             this.sickness = sickness;
@@ -30,15 +30,15 @@ namespace ClinicSimulator
         private string GenerateSickness()
         {
             string[] diseases = {
-                "Resfriado común",
+                "Resfriado",
                 "Gripe",
                 "Hipertensión",
                 "Diabetes",
                 "Asma",
                 "Artritis",
                 "Cáncer",
-                "Enfermedad de Alzheimer",
-                "Enfermedad de Parkinson",
+                "Alzheimer",
+                "Parkinson",
                 "Sida",
                 "Malaria",
                 "Epilepsia",
@@ -46,13 +46,15 @@ namespace ClinicSimulator
                 "Anemia",
                 "Enfermedad cardiovascular"
             };
-            Random rand = new Random();
-            return diseases[rand.Next(0, diseases.Length - 1)];
+            return diseases[base.Rand.Next(0, diseases.Length - 1)];
         }
         private int GenerateDoctorID(int maxSize)
         {
-            Random random = new Random();
-            return random.Next(0, maxSize);
+            return base.Rand.Next(1, maxSize + 1);
+        }
+        public override string ToString()
+        {
+            return base.ToString() + "Doctor a cargo: " + doctorID + " ║ " + "Enfermedad: " + sickness;
         }
     }
 }

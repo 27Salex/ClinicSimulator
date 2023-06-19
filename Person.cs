@@ -6,15 +6,16 @@ namespace ClinicSimulator
 {
     internal class Person
     {
-        private string dni;
+        public string dni;
         private string name;
         private int age;
         private string sex;
         private string phone;
+        private Random rand = new Random();
+        public Random Rand { get { return rand; } }
 
         public Person()
         {
-            Random rand = new Random();
             dni = rand.Next(1000000, 99999999).ToString() + "A";
             name = GenerateName();
             age = rand.Next(25, 65);
@@ -34,27 +35,22 @@ namespace ClinicSimulator
         {
             string[] nameslist = {"Juan Carlos", "Pedro", "Luis", "Carlos", "Alejandro", "Miguel", "Diego", "Javier", "Francisco", "Manuel",
             "Andrés", "Ricardo", "Hugo", "Pablo", "Sergio","María", "Ana", "Laura", "Sofía", "Isabella", "Lucía", "Valentina", "Camila",
-            "Gabriela", "Mariana", "Paula", "Fernanda", "Daniela", "Valeria", "Carolina" };
-
-            Random rand = new Random();
+            "Gabriela", "Mariana", "Paula", "Fernanda", "Daniela", "Valeria", "Carolina" };        
             return nameslist[rand.Next(0, nameslist.Length - 1)];
         }
 
         public string GenerateSex()
         {
-            string[] sexList = { "Hombre", "Mujer", "No binario" };
-            Random rand = new Random();
-            return sexList[rand.Next(0, sexList.Length - 1)];
+            string[] sexList = { "Hombre", "Mujer"};
+            return sexList[rand.Next(0, sexList.Length )];
         }
         public string GeneratePhone()
-        {
-            Random rand = new Random();
+        {          
             return "+34 " + rand.Next(111111111, 999999999);
-
         }
         public override string ToString()
         {
-            return "Nombre: " + name + " ║ " + "DNI: " + dni + " ║ " + "Edad: " + age + " ║ " + "Sexo: " + sex + " ║ " + "Tlf: " + phone + " ║ ";
+            return name + " ║ " + "DNI: " + dni + " ║ " + "Edad: " + age + " ║ " + sex + " ║ " + "Tlf: " + phone + " ║ ";
         }
     }
 }
